@@ -1,47 +1,27 @@
 package it.sps.main.services;
 
-import java.time.LocalDateTime;
-import java.time.Period;
-import java.time.ZoneId;
-import java.time.ZonedDateTime;
 import java.sql.Date;
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import javax.transaction.Transactional;
 
+import it.sps.main.dtos.FilmDtoEager;
 import it.sps.main.entities.Film;
-import it.sps.main.repositories.FilmRepository;
+import utilities.sql.SqlDate;
 
-@Service
-public class FilmService {
+public interface FilmService {
 	
-	@Autowired
-	private FilmRepository filmRepository;
+	List<Film> listaFilmUltimoMese();	
+	
+	List<Film> listaTuttiIFilm();
+	
+	void addFilm (String dataUscita, int annoDiProduzione, double budgetFilm, double costoNoleggio, double costoBiglietto,
+			String titoloFilm, double costoAcquisto); 
+	
+	void addFilmEager(FilmDtoEager filmDtoEager);
 
-	// TODO: Metodo che restituisce i film dell'ultimo mese
-	public List<Film> ultimoMese(){
-		return filmRepository.findByDataUscitaBetween(dataUltimoMese(), dataOdierna());	
-	}
-	
-	public List<Film> tuttiIFilm(){
-		return filmRepository.findAll();	
-	}
-	
-	private Date dataUltimoMese() {
-		ZonedDateTime localDateTime = LocalDateTime.now().atZone(ZoneId.systemDefault()).minus(Period.ofDays(30));
-		return gestSqlDate(localDateTime);
-	}
+	Date dataUltimoMese();
 
-	private Date dataOdierna() {
-		ZonedDateTime localDateTime = LocalDateTime.now().atZone(ZoneId.systemDefault());
-		return gestSqlDate(localDateTime);
-	}
-	
-	private Date gestSqlDate(ZonedDateTime localDateTime) {
-		long millis = localDateTime.toInstant().toEpochMilli();
-		return new Date(millis);
-	}
-	
+	Date dataOdierna();
 
 }

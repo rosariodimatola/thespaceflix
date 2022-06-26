@@ -6,7 +6,8 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.OneToMany;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -43,8 +44,11 @@ public class Film extends EntitaGenerica {
 	@Column(name = "trama")
 	private String trama;
 	
-	@OneToMany (cascade = CascadeType.PERSIST)
+	//@OneToMany (cascade = CascadeType.PERSIST)
+	@ManyToMany (targetEntity=Attore.class, cascade = CascadeType.PERSIST)
+	@JoinColumn(name="attore_id")
 	private List<Attore> attori;
+	
 	
 	//Creare classe registra che estende persona e ha relazione onetomany con films
 	
@@ -152,5 +156,5 @@ public class Film extends EntitaGenerica {
 				+ "\n  annoProduzione=" + annoProduzione 
 				+ "\n\n";
 	}
-
 }
+

@@ -67,5 +67,11 @@ public class CasaCinematografica extends EntitaGenerica {
 	public void setFilm(List<Film> film) {
 		this.film = film;
 	}
+
+	@Override
+	public String toString() {
+		return "CasaCinematografica [nome=" + nome + ", partitaIva=" + partitaIva + ", nazionalita=" + nazionalita
+				+ ", attori=" + attori + ", film=" + film + "]";
+	}
 	
 }

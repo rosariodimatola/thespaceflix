@@ -5,7 +5,8 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -13,13 +14,16 @@ import javax.persistence.Table;
 @Table (name = "attori")
 public class Attore extends Persona {
 	
-	@Column(name = "oscarVinti")
+	@Column(name = "oscar_vinti")
 	private int oscarVinti;
 	
-	@OneToMany (cascade = CascadeType.PERSIST)
+	//@OneToMany (cascade = CascadeType.PERSIST)
+	@ManyToMany (targetEntity=Film.class, cascade = CascadeType.PERSIST)
+	@JoinColumn(name="film_id")
 	private List<Film> film;
 
-	public Attore() {}
+	public Attore() {
+	}
 
 	public int getOscarVinti() {
 		return oscarVinti;

@@ -1,7 +1,5 @@
 package it.sps.main.entities;
 
-import java.sql.Date;
-
 import javax.persistence.Column;
 import javax.persistence.MappedSuperclass;
 
@@ -21,7 +19,7 @@ public class Persona extends EntitaGenerica{
 	private String codiceDocumento;
 	
 	@Column(name = "data_di_nascita", nullable = false)
-	private Date dataDiNascita;
+	private java.sql.Date dataDiNascita;
 	
 	@Column(name = "luogo_di_nascita", nullable = false)
 	private String luogoDiNascita;
@@ -63,11 +61,11 @@ public class Persona extends EntitaGenerica{
 		this.codiceDocumento = codiceDocumento;
 	}
 
-	public Date getDataDiNascita() {
+	public java.sql.Date getDataDiNascita() {
 		return dataDiNascita;
 	}
 
-	public void setDataDiNascita(Date dataDiNascita) {
+	public void setDataDiNascita(java.sql.Date dataDiNascita) {
 		this.dataDiNascita = dataDiNascita;
 	}
 
