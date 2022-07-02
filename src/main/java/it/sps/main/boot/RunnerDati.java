@@ -13,7 +13,7 @@ import org.springframework.stereotype.Component;
 import it.sps.main.dtos.AttoreDto;
 import it.sps.main.dtos.FilmDtoEager;
 import it.sps.main.dtos.FilmDtoSlim;
-import it.sps.main.services.AttoreService;
+import it.sps.main.services.AttoreServiceImpl;
 import it.sps.main.services.FilmServiceImpl;
 import it.sps.main.services.SalaService;
 import utilities.sql.SqlDate;
@@ -28,7 +28,7 @@ public class RunnerDati implements CommandLineRunner {
 	
 	// Variabile che viene utilizzata per fare la stampa di prova dei metodi del repository
 	@Autowired
-	AttoreService attoreService;
+	AttoreServiceImpl attoreService;
 	
 	// Variabile che viene utilizzata per fare la stampa di prova dei metodi del repository
 	@Autowired
