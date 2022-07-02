@@ -3,10 +3,7 @@ package it.sps.main.converters;
 import org.springframework.beans.BeanUtils;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
-
-import it.sps.main.dtos.AttoreDto;
 import it.sps.main.dtos.FilmDtoSlim;
-import it.sps.main.entities.Attore;
 import it.sps.main.entities.Film;
 
 @Component

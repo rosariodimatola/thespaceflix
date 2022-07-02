@@ -18,7 +18,7 @@ import it.sps.main.services.FilmServiceImpl;
 import it.sps.main.services.SalaService;
 import utilities.sql.SqlDate;
 
-@Profile("dev")
+@Profile("test")
 @Component
 public class RunnerDati implements CommandLineRunner {
 

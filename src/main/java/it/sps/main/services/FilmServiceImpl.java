@@ -4,18 +4,12 @@ import utilities.sql.SqlDate;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.transaction.Transactional;
-
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Service;
-
-import it.sps.main.converters.Dto2FilmEager;
-import it.sps.main.dtos.AttoreDto;
 import it.sps.main.dtos.FilmDtoEager;
-import it.sps.main.entities.Attore;
+import it.sps.main.dtos.FilmDtoSlim;
 import it.sps.main.entities.Film;
 import it.sps.main.repositories.FilmRepository;
 
@@ -28,6 +22,12 @@ public class FilmServiceImpl implements FilmService {
 	
 	@Autowired
 	private Converter<FilmDtoEager, Film> dto2FilmEager;
+	
+	@Autowired
+	private Converter<Film, FilmDtoSlim> film2DtoSlim;
+	
+	@Autowired
+	private Converter<FilmDtoSlim, Film> dtoSlim2Film;
 
 
 	// TODO: Metodo che restituisce i film dell'ultimo mese
@@ -41,6 +41,16 @@ public class FilmServiceImpl implements FilmService {
 		return listaFilm;
 	}
 	
+	public List<FilmDtoSlim> listAllFilmForWeb(){
+		List<Film> listaFilm = filmRepository.findAll();
+		List<FilmDtoSlim> listaFilmDto = new ArrayList<FilmDtoSlim>();
+		for (Film film : listaFilm) {
+			listaFilmDto.add(film2DtoSlim.convert(film)); // Spostare il convertitore nello stato service
+		}
+		return listaFilmDto;
+	}
+	
+	// Aggiunge un film prendendo in input i dati singoli del film stesso
 	public void addFilm (String dataUscita, int annoDiProduzione, double budgetFilm, double costoNoleggio, double costoBiglietto,
 			String titoloFilm, double costoAcquisto) {
 		
@@ -54,6 +64,12 @@ public class FilmServiceImpl implements FilmService {
 		film.setCostoBiglietto(costoBiglietto);
 		film.setTitoloFilm(titoloFilm);
 		film.setDataUscita(dataUscitaFilm);
+		filmRepository.save(film);
+	} 
+	
+	// Metodo che converte il film dto slim ricevuto in input, in un film e lo salva sul database
+	public void addFilm (FilmDtoSlim filmDto) {
+		Film film = dtoSlim2Film.convert(filmDto);
 		filmRepository.save(film);
 	} 
 	

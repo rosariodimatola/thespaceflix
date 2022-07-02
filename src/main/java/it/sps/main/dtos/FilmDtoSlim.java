@@ -7,6 +7,8 @@ import org.springframework.beans.BeanUtils;
 
 public class FilmDtoSlim {
 	
+	private String titoloFilm; 
+	
 	private double budgetFilm;
 	
 	private double costoNoleggio;
@@ -28,6 +30,14 @@ public class FilmDtoSlim {
 	@Generated("SparkTools")
 	private FilmDtoSlim(Builder builder) {
 		BeanUtils.copyProperties(builder, this);
+	}
+	
+	public String getTitoloFilm() {
+		return titoloFilm;
+	}
+
+	public void setTitoloFilm(String titoloFilm) {
+		this.titoloFilm = titoloFilm;
 	}
 	
 	public FilmDtoSlim() {
@@ -122,6 +132,15 @@ public class FilmDtoSlim {
 		private int annoProduzione;
 		private String immagine;
 		private String trama;
+		private String titoloFilm;
+		
+		public String getTitoloFilm() {
+			return titoloFilm;
+		}
+
+		public void setTitoloFilm(String titoloFilm) {
+			this.titoloFilm = titoloFilm;
+		}
 
 		public double getBudgetFilm() {
 			return budgetFilm;
