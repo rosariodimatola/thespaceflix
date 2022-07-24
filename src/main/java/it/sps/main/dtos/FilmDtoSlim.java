@@ -7,6 +7,8 @@ import org.springframework.beans.BeanUtils;
 
 public class FilmDtoSlim {
 	
+	private Long id;
+	
 	private String titoloFilm; 
 	
 	private double budgetFilm;
@@ -26,22 +28,24 @@ public class FilmDtoSlim {
 	private String immagine;
 	
 	private String trama;
-
-	@Generated("SparkTools")
-	private FilmDtoSlim(Builder builder) {
-		BeanUtils.copyProperties(builder, this);
-	}
 	
+	public FilmDtoSlim() {}
+	
+	
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
 	public String getTitoloFilm() {
 		return titoloFilm;
 	}
 
 	public void setTitoloFilm(String titoloFilm) {
 		this.titoloFilm = titoloFilm;
-	}
-	
-	public FilmDtoSlim() {
-		super();
 	}
 
 	public double getBudgetFilm() {
@@ -117,12 +121,19 @@ public class FilmDtoSlim {
 	}
 
 	@Generated("SparkTools")
+	private FilmDtoSlim(Builder builder) {
+		BeanUtils.copyProperties(builder, this);
+	}
+
+	@Generated("SparkTools")
 	public static Builder builder() {
 		return new Builder();
 	}
 
 	@Generated("SparkTools")
 	public static final class Builder {
+		private Long id;
+		private String titoloFilm;
 		private double budgetFilm;
 		private double costoNoleggio;
 		private double costoAcquisto;
@@ -132,8 +143,77 @@ public class FilmDtoSlim {
 		private int annoProduzione;
 		private String immagine;
 		private String trama;
-		private String titoloFilm;
-		
+
+		private Builder() {
+		}
+
+		public Builder withId(Long id) {
+			this.id = id;
+			return this;
+		}
+
+		public Builder withTitoloFilm(String titoloFilm) {
+			this.titoloFilm = titoloFilm;
+			return this;
+		}
+
+		public Builder withBudgetFilm(double budgetFilm) {
+			this.budgetFilm = budgetFilm;
+			return this;
+		}
+
+		public Builder withCostoNoleggio(double costoNoleggio) {
+			this.costoNoleggio = costoNoleggio;
+			return this;
+		}
+
+		public Builder withCostoAcquisto(double costoAcquisto) {
+			this.costoAcquisto = costoAcquisto;
+			return this;
+		}
+
+		public Builder withCostoBiglietto(double costoBiglietto) {
+			this.costoBiglietto = costoBiglietto;
+			return this;
+		}
+
+		public Builder withQuantitaNoleggioAcquistoDvd(int quantitaNoleggioAcquistoDvd) {
+			this.quantitaNoleggioAcquistoDvd = quantitaNoleggioAcquistoDvd;
+			return this;
+		}
+
+		public Builder withDataUscita(Date dataUscita) {
+			this.dataUscita = dataUscita;
+			return this;
+		}
+
+		public Builder withAnnoProduzione(int annoProduzione) {
+			this.annoProduzione = annoProduzione;
+			return this;
+		}
+
+		public Builder withImmagine(String immagine) {
+			this.immagine = immagine;
+			return this;
+		}
+
+		public Builder withTrama(String trama) {
+			this.trama = trama;
+			return this;
+		}
+
+		public FilmDtoSlim build() {
+			return new FilmDtoSlim(this);
+		}
+
+		public Long getId() {
+			return id;
+		}
+
+		public void setId(Long id) {
+			this.id = id;
+		}
+
 		public String getTitoloFilm() {
 			return titoloFilm;
 		}
@@ -213,58 +293,8 @@ public class FilmDtoSlim {
 		public void setTrama(String trama) {
 			this.trama = trama;
 		}
-
-		private Builder() {
-		}
-
-		public Builder withBudgetFilm(double budgetFilm) {
-			this.budgetFilm = budgetFilm;
-			return this;
-		}
-
-		public Builder withCostoNoleggio(double costoNoleggio) {
-			this.costoNoleggio = costoNoleggio;
-			return this;
-		}
-
-		public Builder withCostoAcquisto(double costoAcquisto) {
-			this.costoAcquisto = costoAcquisto;
-			return this;
-		}
-
-		public Builder withCostoBiglietto(double costoBiglietto) {
-			this.costoBiglietto = costoBiglietto;
-			return this;
-		}
-
-		public Builder withQuantitaNoleggioAcquistoDvd(int quantitaNoleggioAcquistoDvd) {
-			this.quantitaNoleggioAcquistoDvd = quantitaNoleggioAcquistoDvd;
-			return this;
-		}
-
-		public Builder withDataUscita(Date dataUscita) {
-			this.dataUscita = dataUscita;
-			return this;
-		}
-
-		public Builder withAnnoProduzione(int annoProduzione) {
-			this.annoProduzione = annoProduzione;
-			return this;
-		}
-
-		public Builder withImmagine(String immagine) {
-			this.immagine = immagine;
-			return this;
-		}
-
-		public Builder withTrama(String trama) {
-			this.trama = trama;
-			return this;
-		}
-
-		public FilmDtoSlim build() {
-			return new FilmDtoSlim(this);
-		}
+		
 	}
 
+	
 }

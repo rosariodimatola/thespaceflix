@@ -7,7 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Service;
 import it.sps.main.dtos.AttoreDto;
+import it.sps.main.dtos.FilmDtoSlim;
 import it.sps.main.entities.Attore;
+import it.sps.main.entities.Film;
 import it.sps.main.repositories.AttoreRepository;
 
 @Service
@@ -38,6 +40,12 @@ public class AttoreServiceImpl implements AttoreService{
 		return listaAttoriDto;		
 	}
 	
+	public AttoreDto searchActorForId(Long id) {
+		Attore attore = attoreRepository.findById(id).get();
+		AttoreDto attoreDto = attore2Dto.convert(attore);
+		return attoreDto;
+	}
+	
 	/*
 	public void addAttore(String nome, String cognome, String dataDiNascita, String luogoDiNascita, String nazionalita, int oscarVinti) {
 		
@@ -57,6 +65,11 @@ public class AttoreServiceImpl implements AttoreService{
 	public void addAttore(AttoreDto attoreDto) {
 		Attore attore = dto2Attore.convert(attoreDto);
 		attoreRepository.save(attore);
+	}
+	
+	@Override
+	public void deleteActorById(Long id) {
+		attoreRepository.deleteById(id);
 	}
 	
 	public void updateAttore(AttoreDto attoreDto) {

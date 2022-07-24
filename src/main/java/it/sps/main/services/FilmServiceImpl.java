@@ -4,6 +4,8 @@ import utilities.sql.SqlDate;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
+
 import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.converter.Converter;
@@ -50,6 +52,12 @@ public class FilmServiceImpl implements FilmService {
 		return listaFilmDto;
 	}
 	
+	public FilmDtoSlim searchFilmForId(Long id) {
+		Film film = filmRepository.findById(id).get();
+		FilmDtoSlim filmDtoSlim = film2DtoSlim.convert(film);
+		return filmDtoSlim;
+	}
+	
 	// Aggiunge un film prendendo in input i dati singoli del film stesso
 	public void addFilm (String dataUscita, int annoDiProduzione, double budgetFilm, double costoNoleggio, double costoBiglietto,
 			String titoloFilm, double costoAcquisto) {
@@ -71,7 +79,18 @@ public class FilmServiceImpl implements FilmService {
 	public void addFilm (FilmDtoSlim filmDto) {
 		Film film = dtoSlim2Film.convert(filmDto);
 		filmRepository.save(film);
-	} 
+	}
+	
+	@Override
+	public void deleteFilm(FilmDtoSlim filmDto) {
+		Film film = dtoSlim2Film.convert(filmDto);
+		filmRepository.delete(film);
+	}
+	
+	@Override
+	public void deleteFilmById(Long id) {
+		filmRepository.deleteById(id);
+	}
 	
 	public void addFilmEager(FilmDtoEager filmDtoEager) {
 //		log.info("Persisto l'attore {}", attoreDto);

@@ -13,6 +13,8 @@ public interface FilmService {
 	
 	List<Film> listaTuttiIFilm();
 	
+	FilmDtoSlim searchFilmForId(Long id);
+	
 	List<FilmDtoSlim> listAllFilmForWeb();
 	
 	void addFilm (String dataUscita, int annoDiProduzione, double budgetFilm, double costoNoleggio, double costoBiglietto,
@@ -21,6 +23,10 @@ public interface FilmService {
 	void addFilm (FilmDtoSlim film);
 	
 	void addFilmEager(FilmDtoEager filmDtoEager);
+	
+	void deleteFilm(FilmDtoSlim film);
+	
+	void deleteFilmById(Long id);
 
 	Date dataUltimoMese();
 

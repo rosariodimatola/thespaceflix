@@ -1,23 +1,24 @@
 package it.sps.main.entities;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table (name = "utenti")
+@Table (name = "users")
 public class Utente extends Persona {
-	
+		
 	@Column(name = "username", nullable = false)
 	private String username;
 	
 	@Column(name = "password", nullable = false)
 	private String password;
 	
-	@OneToOne (cascade = CascadeType.PERSIST)
-	private Ruolo ruolo; // Deve diventare un enum
+	//@OneToOne (cascade = CascadeType.PERSIST)
+	//private Ruolo ruolo; // Deve diventare un enum
+	
+	@Column(name = "role", nullable = false)
+	private String role;
 	
 	public Utente() {}
 
@@ -37,12 +38,20 @@ public class Utente extends Persona {
 		this.password = password;
 	}
 
-	public Ruolo getRuolo() {
+	public String getRole() {
+		return role;
+	}
+
+	public void setRole(String role) {
+		this.role = role;
+	}
+
+	/*public Ruolo getRuolo() {
 		return ruolo;
 	}
 
 	public void setRuolo(Ruolo ruolo) {
 		this.ruolo = ruolo;
-	}
+	}*/
 
 }

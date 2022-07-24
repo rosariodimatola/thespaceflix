@@ -17,5 +17,9 @@ public interface AttoreService {
 	
 	void updateAttore(AttoreDto attoreDto);
 	
+	AttoreDto searchActorForId(Long id);
+	
+	void deleteActorById(Long id);
+	
 }
 	
